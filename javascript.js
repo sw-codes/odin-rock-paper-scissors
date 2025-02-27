@@ -3,13 +3,13 @@ function getComputerChoice() {
     computerChoice = ""
     switch (computerNum) {
         case (1) :
-            computerChoice = "Rock";
+            computerChoice = "rock";
             break;
         case (2) :
-            computerChoice = "Paper";
+            computerChoice = "paper";
             break;
         case (3) :
-            computerChoice = "Scissors";
+            computerChoice = "scissors";
             break;
     }
     console.log(computerChoice);
@@ -17,4 +17,11 @@ function getComputerChoice() {
     
 }
 
+function getHumanChoice() {
+    humanChoice = prompt("Choose from rock, paper or scissors and enter.");
+    console.log(humanChoice);
+    return humanChoice;
+}
+
 getComputerChoice();
+getHumanChoice();
