@@ -1,5 +1,3 @@
-
-
 function getComputerChoice() {
     computerNum = Math.ceil(Math.random() * 3);
     computerChoice = ""
@@ -14,18 +12,13 @@ function getComputerChoice() {
             computerChoice = "scissors";
             break;
     }
-    console.log(computerChoice);
     return computerChoice;
-    
 }
 
 function getHumanChoice() {
     humanChoice = prompt("Choose from rock, paper or scissors and enter.");
-    console.log(humanChoice);
     return humanChoice;
 }
-
-
 
 function playGame() {
     let computerScore = 0;
@@ -45,9 +38,6 @@ function playGame() {
 
     function playRound(humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase();
-        //rock beats scissors
-        //paper beats rock
-        //scissors beats paper
         if (humanChoice == computerChoice) {
             console.log("It's a draw! Nobody wins.");
             roundCount++;
@@ -69,7 +59,4 @@ function playGame() {
     }
 }
 
-// getComputerChoice();
-// getHumanChoice();
-// playRound(getHumanChoice(), getComputerChoice());
 playGame();
