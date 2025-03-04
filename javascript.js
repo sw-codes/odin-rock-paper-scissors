@@ -2,60 +2,80 @@ function getComputerChoice() {
     computerNum = Math.ceil(Math.random() * 3);
     computerChoice = ""
     switch (computerNum) {
-        case (1) :
+        case (1):
             computerChoice = "rock";
             break;
-        case (2) :
+        case (2):
             computerChoice = "paper";
             break;
-        case (3) :
+        case (3):
             computerChoice = "scissors";
             break;
     }
     return computerChoice;
 }
 
-function getHumanChoice() {
-    humanChoice = prompt("Choose from rock, paper or scissors and enter.");
-    return humanChoice;
-}
-
 function playGame() {
     let computerScore = 0;
     let humanScore = 0;
-    let roundCount = 0;
+    let resultDiv = document.getElementById("resultDiv");
 
-    while (roundCount < 5) {
-        playRound(getHumanChoice(), getComputerChoice());
-        roundCount++;
-    }
-    if (humanScore > computerScore) {
-        console.log("You win the game!");
-    } else {
-        console.log("The machines have won!");
-    }
-    console.log("Game over.");
+    let buttons = document.querySelectorAll("button");
+    buttons.forEach((item) => {
+        item.addEventListener("click", () => {
+            playRound(item.textContent, getComputerChoice());
+        })
+    })
 
     function playRound(humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase();
+
+        if (humanScore == 5) {
+            let winPara = document.createElement("p");
+            winPara.textContent = "You have won the game!";
+            resultDiv.appendChild(winPara);
+            const scorePara = document.createElement("p");
+            scorePara.textContent = `You: ${humanScore} The Machines: ${computerScore}`;
+            resultDiv.appendChild(scorePara);
+            return;
+        }
+        if (computerScore == 5) {
+            let winPara = document.createElement("p");
+            winPara.textContent = "The Machines won the game!";
+            resultDiv.appendChild(winPara);
+            const scorePara = document.createElement("p");
+            scorePara.textContent = `You: ${humanScore} The Machines: ${computerScore}`;
+            resultDiv.appendChild(scorePara);
+            return;
+        }
+
         if (humanChoice == computerChoice) {
-            console.log("It's a draw! Nobody wins.");
-            roundCount++;
-            playRound(getHumanChoice(), getComputerChoice());
+            const para = document.createElement("p");
+            para.textContent = "It's a draw! Nobody wins.";
+            resultDiv.appendChild(para);
+
         } else if (humanChoice == "rock" && computerChoice == "scissors") {
             humanScore++;
-            console.log("You win! Rock beats Scissors.");
+            const para = document.createElement("p");
+            para.textContent = "You win! Rock beats Scissors.";
+            resultDiv.appendChild(para);
         } else if (humanChoice == "paper" && computerChoice == "rock") {
             humanScore++;
-            console.log("You win! Paper beats Rock.");
+            const para = document.createElement("p");
+            para.textContent = "You win! Paper beats Rock.";
+            resultDiv.appendChild(para);
         } else if (humanChoice == "scissors" && computerChoice == "paper") {
             humanScore++;
-            console.log("You win! Scissors beats Paper.");
+            const para = document.createElement("p");
+            para.textContent = "You win! Scissors beats Paper.";
+            resultDiv.appendChild(para);
         } else {
             computerScore++;
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            const para = document.createElement("p");
+            para.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
+            resultDiv.appendChild(para);
         }
-        
+
     }
 }
 
